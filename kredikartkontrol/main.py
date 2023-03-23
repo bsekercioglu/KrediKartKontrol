@@ -22,9 +22,11 @@ for i in range(len(kk_reg)-15):
         response = requests.get(f"https://lookup.binlist.net/{bin_numarasi}")
         if response.ok:
             response_json = response.json()
-            if 'kart_veren' in response_json:
-                print("Kart ait olduğu banka: ", response_json['kart_veren']['name'])
+            if 'bank' in response_json:
+                print("Kart ait olduğu banka: ", response_json['bank']['name'])
+                print("Kart tipi: ", response_json['brand'])
+                print("Para Birimi: ", response_json['country']["currency"])
             else:
-                print("Kart tipi: ", response_json['kart_veren'])
+                print("Kart tipi: ", response_json['brand'])
     else:
         print("Geçersiz kart numarası: ", rakam)
